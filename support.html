@@ -1,61 +1,220 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJU One - Support</title>
+    <title>Support — EJU One</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #c96442;
+            --bg: #f3efe9;
+            --surface: #faf8f5;
+            --text: #3d3929;
+            --text-secondary: #8b8579;
+            --text-tertiary: #a8a39a;
+            --border: #ddd8d0;
+            --border-subtle: #eae7e0;
+            --accent-light: #f5ebe5;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #3a3a3a; background: #faf8f5; padding: 24px; max-width: 720px; margin: 0 auto; }
-        h1 { font-size: 24px; color: #2c2c2c; margin-bottom: 8px; }
-        h2 { font-size: 18px; color: #2c2c2c; margin-top: 32px; margin-bottom: 12px; }
-        p, li { font-size: 15px; margin-bottom: 12px; }
-        ul { padding-left: 20px; }
-        .subtitle { font-size: 15px; color: #888; margin-bottom: 32px; }
-        a { color: #d4723c; }
-        .contact-card { background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px; border: 1px solid #e8e4df; }
-        .contact-item { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-        .contact-item:last-child { margin-bottom: 0; }
-        .faq { background: #fff; border-radius: 12px; padding: 24px; margin-top: 24px; border: 1px solid #e8e4df; }
-        .faq-item { margin-bottom: 20px; }
-        .faq-item:last-child { margin-bottom: 0; }
-        .faq-q { font-weight: 600; color: #2c2c2c; margin-bottom: 4px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(243, 239, 233, 0.85);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-inner {
+            max-width: 760px; margin: 0 auto;
+            padding: 16px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 700; font-size: 17px;
+            color: var(--text); text-decoration: none;
+        }
+        .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-back {
+            color: var(--primary); text-decoration: none;
+            font-size: 14px; font-weight: 500;
+        }
+        .container {
+            max-width: 760px; margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        h1 {
+            font-size: 44px; font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+        }
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 36px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .contact-icon {
+            width: 64px; height: 64px;
+            border-radius: 16px;
+            background: var(--accent-light);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+        .contact-card h2 {
+            font-size: 20px; font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+        .email-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s;
+        }
+        .email-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(201, 100, 66, 0.25);
+        }
+        .faq-section h2 {
+            font-size: 26px; font-weight: 800;
+            text-align: center;
+            margin: 56px 0 32px;
+            letter-spacing: -0.5px;
+        }
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 14px;
+        }
+        .faq-q {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .faq-q::before {
+            content: "Q";
+            flex-shrink: 0;
+            width: 24px; height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .faq-a {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding-left: 34px;
+            line-height: 1.7;
+        }
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-subtle);
+        }
+        @media (max-width: 720px) {
+            h1 { font-size: 32px; }
+            .container { padding: 40px 24px 60px; }
+            .contact-card { padding: 28px 20px; }
+        }
     </style>
 </head>
 <body>
-    <h1>EJU One Support</h1>
-    <p class="subtitle">We're here to help you with any questions or issues.</p>
-
-    <div class="contact-card">
-        <h2 style="margin-top: 0;">Contact Us</h2>
-        <div class="contact-item">
-            <span>Email: <a href="mailto:dddogwang@gmail.com">dddogwang@gmail.com</a></span>
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="icon.png" alt="EJU One">
+                EJU One
+            </a>
+            <a href="index.html" class="nav-back">← Back</a>
         </div>
-        <p>We typically respond within 24 hours.</p>
-    </div>
+    </nav>
 
-    <div class="faq">
-        <h2 style="margin-top: 0;">FAQ</h2>
-
-        <div class="faq-item">
-            <p class="faq-q">Q: How do I restore my EJUOne Pro purchase on a new device?</p>
-            <p>A: Go to Settings > EJUOne Pro > Restore Purchases. Make sure you are signed in with the same Apple ID used for the original purchase.</p>
+    <main class="container">
+        <div class="header">
+            <h1>Support</h1>
+            <p class="subtitle">We're here to help you with any questions or issues.</p>
         </div>
 
-        <div class="faq-item">
-            <p class="faq-q">Q: How do I sync my study data across devices?</p>
-            <p>A: EJUOne Pro users can sign in with the same account on multiple devices. Your study data will automatically sync via the cloud.</p>
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h2>Get in Touch</h2>
+            <p>We typically respond within 24 hours.</p>
+            <a href="mailto:dddogwang@gmail.com" class="email-button">
+                dddogwang@gmail.com
+            </a>
         </div>
 
-        <div class="faq-item">
-            <p class="faq-q">Q: How do I delete my account?</p>
-            <p>A: Go to Settings > Account > Delete Account. Please note that this action is irreversible and all your cloud data will be permanently deleted.</p>
-        </div>
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
 
-        <div class="faq-item">
-            <p class="faq-q">Q: I found an error in a question. How can I report it?</p>
-            <p>A: Please send an email to dddogwang@gmail.com with the subject, year, and question number. We appreciate your help in improving the App.</p>
+            <div class="faq-item">
+                <div class="faq-q">How do I restore my EJUOne Pro purchase on a new device?</div>
+                <div class="faq-a">Go to Settings → EJUOne Pro → Restore Purchases. Make sure you are signed in with the same Apple ID used for the original purchase.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How do I sync my study data across devices?</div>
+                <div class="faq-a">EJUOne Pro users can sign in with the same account on multiple devices. Your study data will automatically sync via the cloud.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">How do I delete my account?</div>
+                <div class="faq-a">Go to Settings → Account → Delete Account. Please note that this action is irreversible and all your cloud data will be permanently deleted.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">I found an error in a question. How can I report it?</div>
+                <div class="faq-a">Please send an email to dddogwang@gmail.com with the subject, year, and question number. We appreciate your help in improving the App.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">Is EJUOne Pro a subscription?</div>
+                <div class="faq-a">No. EJUOne Pro is a one-time purchase that grants permanent access — no recurring charges.</div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer>© 2025 DDDog</footer>
 </body>
 </html>

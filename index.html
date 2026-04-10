@@ -3,39 +3,466 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJU One</title>
+    <title>EJU One — Your EJU Study Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #c96442;
+            --bg: #f3efe9;
+            --surface: #faf8f5;
+            --text: #3d3929;
+            --text-secondary: #8b8579;
+            --text-tertiary: #a8a39a;
+            --border: #ddd8d0;
+            --border-subtle: #eae7e0;
+            --accent-light: #f5ebe5;
+            --star: #d4a24e;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.8; color: #3a3a3a; background: #faf8f5; padding: 48px 24px; max-width: 720px; margin: 0 auto; }
-        h1 { font-size: 32px; color: #2c2c2c; margin-bottom: 8px; }
-        .subtitle { font-size: 16px; color: #888; margin-bottom: 40px; }
-        .links { display: flex; flex-direction: column; gap: 12px; }
-        .link-card { display: block; background: #fff; border-radius: 12px; padding: 20px 24px; border: 1px solid #e8e4df; text-decoration: none; color: #2c2c2c; transition: all 0.2s; }
-        .link-card:hover { border-color: #d4723c; transform: translateY(-2px); }
-        .link-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-        .link-desc { font-size: 14px; color: #888; }
-        footer { margin-top: 48px; text-align: center; font-size: 13px; color: #aaa; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(243, 239, 233, 0.85);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+            text-align: center;
+        }
+        .hero img.app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(201, 100, 66, 0.18);
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            color: var(--text);
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+        .hero .tagline {
+            font-size: 22px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 620px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+        .hero .badges {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        /* Features section */
+        .features {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: -0.8px;
+        }
+        .section-subtitle {
+            font-size: 17px;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.2s;
+        }
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(201, 100, 66, 0.08);
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .feature-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Screenshots gallery */
+        .screenshots {
+            background: var(--surface);
+            padding: 80px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .screenshots-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .gallery {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 24px 4px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .gallery::-webkit-scrollbar { display: none; }
+        .gallery img {
+            flex: 0 0 auto;
+            width: 260px;
+            height: auto;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(61, 57, 41, 0.12);
+            border: 1px solid var(--border-subtle);
+            scroll-snap-align: center;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: translateY(-6px);
+        }
+        .gallery-hint {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: 16px;
+        }
+
+        /* Subjects */
+        .subjects {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .subject-pill {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .subject-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .subject-detail {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 24px 40px;
+            margin-top: 40px;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+        .footer-brand-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+        }
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 720px) {
+            .hero { padding: 60px 24px 40px; }
+            .hero h1 { font-size: 42px; }
+            .hero .tagline { font-size: 18px; }
+            .section-title { font-size: 28px; }
+            .nav-links { gap: 18px; }
+            .nav-links a { font-size: 13px; }
+            .gallery img { width: 220px; }
+        }
     </style>
 </head>
 <body>
-    <h1>EJU One</h1>
-    <p class="subtitle">A study companion for the Examination for Japanese University Admission.</p>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <img src="icon.png" alt="EJU One">
+                EJU One
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+        </div>
+    </nav>
 
-    <div class="links">
-        <a href="privacy.html" class="link-card">
-            <div class="link-title">Privacy Policy</div>
-            <div class="link-desc">How we collect, use, and protect your information</div>
-        </a>
-        <a href="terms.html" class="link-card">
-            <div class="link-title">Terms of Use</div>
-            <div class="link-desc">Terms and conditions for using EJU One</div>
-        </a>
-        <a href="support.html" class="link-card">
-            <div class="link-title">Support</div>
-            <div class="link-desc">Get help and contact us</div>
-        </a>
-    </div>
+    <section class="hero">
+        <img src="icon.png" alt="EJU One" class="app-icon">
+        <h1>EJU One</h1>
+        <p class="tagline">Your all-in-one study companion for the Examination for Japanese University Admission.</p>
+        <div class="badges">
+            <span class="badge"><span class="dot"></span>All EJU subjects</span>
+            <span class="badge"><span class="dot"></span>Mock & practice mode</span>
+            <span class="badge"><span class="dot"></span>Cross-device sync</span>
+        </div>
+    </section>
 
-    <footer>© 2025 DDDog</footer>
+    <section class="features" id="features">
+        <h2 class="section-title">Everything you need to prepare</h2>
+        <p class="section-subtitle">Built specifically for EJU candidates, by an EJU graduate.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <div class="feature-title">Mock Exams</div>
+                <div class="feature-desc">Full timed simulations across years and rounds, just like the real test.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Practice Mode</div>
+                <div class="feature-desc">Free-form subject practice — anytime, anywhere, no pressure.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <div class="feature-title">Listening Mastery</div>
+                <div class="feature-desc">Dedicated training for Japanese listening and listening-reading sections.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📖</div>
+                <div class="feature-title">Wrong Answer Book</div>
+                <div class="feature-desc">Auto-collect mistakes and review them until you've mastered every one.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <div class="feature-title">Bookmarks</div>
+                <div class="feature-desc">Save important questions for quick review later.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🃏</div>
+                <div class="feature-title">Word Cards</div>
+                <div class="feature-desc">Built-in flashcard system for vocabulary retention.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Progress Analytics</div>
+                <div class="feature-desc">Detailed history and score tracking to visualize your growth.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <div class="feature-title">Cloud Sync</div>
+                <div class="feature-desc">EJUOne Pro keeps your data in sync across all your devices.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots" id="screenshots">
+        <div class="screenshots-inner">
+            <h2 class="section-title">Designed with care</h2>
+            <p class="section-subtitle">Warm, focused, and built for long study sessions.</p>
+            <div class="gallery">
+                <img src="images/IMG_7591.PNG" alt="Screenshot 1" loading="lazy">
+                <img src="images/IMG_7592.PNG" alt="Screenshot 2" loading="lazy">
+                <img src="images/IMG_7593.PNG" alt="Screenshot 3" loading="lazy">
+                <img src="images/IMG_7594.PNG" alt="Screenshot 4" loading="lazy">
+                <img src="images/IMG_7595.PNG" alt="Screenshot 5" loading="lazy">
+                <img src="images/IMG_7596.PNG" alt="Screenshot 6" loading="lazy">
+                <img src="images/IMG_7597.PNG" alt="Screenshot 7" loading="lazy">
+                <img src="images/IMG_7598.PNG" alt="Screenshot 8" loading="lazy">
+                <img src="images/IMG_7599.PNG" alt="Screenshot 9" loading="lazy">
+                <img src="images/IMG_7600.PNG" alt="Screenshot 10" loading="lazy">
+                <img src="images/IMG_7602.PNG" alt="Screenshot 11" loading="lazy">
+            </div>
+            <p class="gallery-hint">← Swipe to explore →</p>
+        </div>
+    </section>
+
+    <section class="subjects">
+        <h2 class="section-title">All EJU subjects covered</h2>
+        <p class="section-subtitle">From Japanese to natural sciences — everything in one place.</p>
+        <div class="subjects-grid">
+            <div class="subject-pill">
+                <div class="subject-name">Japanese</div>
+                <div class="subject-detail">Reading · Listening · Combined</div>
+            </div>
+            <div class="subject-pill">
+                <div class="subject-name">Mathematics</div>
+                <div class="subject-detail">Course 1 · Course 2</div>
+            </div>
+            <div class="subject-pill">
+                <div class="subject-name">Comprehensive</div>
+                <div class="subject-detail">Social studies</div>
+            </div>
+            <div class="subject-pill">
+                <div class="subject-name">Physics</div>
+                <div class="subject-detail">Natural science</div>
+            </div>
+            <div class="subject-pill">
+                <div class="subject-name">Chemistry</div>
+                <div class="subject-detail">Natural science</div>
+            </div>
+            <div class="subject-pill">
+                <div class="subject-name">Biology</div>
+                <div class="subject-detail">Natural science</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="icon.png" alt="EJU One">
+                <span class="footer-brand-name">EJU One</span>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:dddogwang@gmail.com">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 DDDog. EJU One is an independent third-party study tool, not affiliated with JASSO.
+        </div>
+    </footer>
 </body>
 </html>
