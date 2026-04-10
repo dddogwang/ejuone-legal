@@ -19,7 +19,7 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans", sans-serif;
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
@@ -36,6 +36,7 @@
             max-width: 760px; margin: 0 auto;
             padding: 16px 24px;
             display: flex; align-items: center; justify-content: space-between;
+            gap: 16px;
         }
         .nav-brand {
             display: flex; align-items: center; gap: 12px;
@@ -43,27 +44,57 @@
             color: var(--text); text-decoration: none;
         }
         .nav-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
         .nav-back {
             color: var(--primary); text-decoration: none;
             font-size: 14px; font-weight: 500;
         }
+        #lang-switcher { position: relative; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 6px;
+            padding: 8px 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 13px; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .lang-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .lang-menu {
+            position: absolute; top: calc(100% + 8px); right: 0;
+            min-width: 140px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 6px;
+            box-shadow: 0 12px 32px rgba(61, 57, 41, 0.12);
+            opacity: 0; visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s;
+        }
+        .lang-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+        .lang-option {
+            display: block; width: 100%;
+            text-align: left;
+            background: none; border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px; font-weight: 500;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .lang-option:hover { background: var(--accent-light); color: var(--primary); }
+        .lang-option.active { background: var(--accent-light); color: var(--primary); }
         .container {
             max-width: 760px; margin: 0 auto;
             padding: 60px 24px 80px;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        h1 {
-            font-size: 44px; font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-        }
-        .subtitle {
-            font-size: 17px;
-            color: var(--text-secondary);
-        }
+        .header { text-align: center; margin-bottom: 48px; }
+        h1 { font-size: 44px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+        .subtitle { font-size: 17px; color: var(--text-secondary); }
         .contact-card {
             background: var(--surface);
             border: 1px solid var(--border-subtle);
@@ -78,12 +109,10 @@
             background: var(--accent-light);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 20px;
-            font-size: 28px;
+            color: var(--primary);
         }
-        .contact-card h2 {
-            font-size: 20px; font-weight: 700;
-            margin-bottom: 8px;
-        }
+        .contact-icon svg { width: 30px; height: 30px; }
+        .contact-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
         .contact-card p {
             color: var(--text-secondary);
             font-size: 15px;
@@ -166,55 +195,121 @@
                 <img src="icon.png" alt="EJU One">
                 EJU One
             </a>
-            <a href="index.html" class="nav-back">← Back</a>
+            <div class="nav-right">
+                <a href="index.html" class="nav-back" data-i18n="nav.back">← Back</a>
+                <div id="lang-switcher"></div>
+            </div>
         </div>
     </nav>
 
     <main class="container">
         <div class="header">
-            <h1>Support</h1>
-            <p class="subtitle">We're here to help you with any questions or issues.</p>
+            <h1 data-i18n="title">Support</h1>
+            <p class="subtitle" data-i18n="subtitle">We're here to help you with any questions or issues.</p>
         </div>
 
         <div class="contact-card">
-            <div class="contact-icon">✉️</div>
-            <h2>Get in Touch</h2>
-            <p>We typically respond within 24 hours.</p>
-            <a href="mailto:dddogwang@gmail.com" class="email-button">
-                dddogwang@gmail.com
-            </a>
+            <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h2 data-i18n="contact.title">Get in Touch</h2>
+            <p data-i18n="contact.desc">We typically respond within 24 hours.</p>
+            <a href="mailto:dddogwang@gmail.com" class="email-button">dddogwang@gmail.com</a>
         </div>
 
         <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
 
             <div class="faq-item">
-                <div class="faq-q">How do I restore my EJUOne Pro purchase on a new device?</div>
-                <div class="faq-a">Go to Settings → EJUOne Pro → Restore Purchases. Make sure you are signed in with the same Apple ID used for the original purchase.</div>
+                <div class="faq-q" data-i18n="faq.q1">How do I restore my EJUOne Pro purchase on a new device?</div>
+                <div class="faq-a" data-i18n="faq.a1">Go to Settings → EJUOne Pro → Restore Purchases. Make sure you are signed in with the same Apple ID used for the original purchase.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-q">How do I sync my study data across devices?</div>
-                <div class="faq-a">EJUOne Pro users can sign in with the same account on multiple devices. Your study data will automatically sync via the cloud.</div>
+                <div class="faq-q" data-i18n="faq.q2">How do I sync my study data across devices?</div>
+                <div class="faq-a" data-i18n="faq.a2">EJUOne Pro users can sign in with the same account on multiple devices. Your study data will automatically sync via the cloud.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-q">How do I delete my account?</div>
-                <div class="faq-a">Go to Settings → Account → Delete Account. Please note that this action is irreversible and all your cloud data will be permanently deleted.</div>
+                <div class="faq-q" data-i18n="faq.q3">How do I delete my account?</div>
+                <div class="faq-a" data-i18n="faq.a3">Go to Settings → Account → Delete Account. Please note that this action is irreversible and all your cloud data will be permanently deleted.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-q">I found an error in a question. How can I report it?</div>
-                <div class="faq-a">Please send an email to dddogwang@gmail.com with the subject, year, and question number. We appreciate your help in improving the App.</div>
+                <div class="faq-q" data-i18n="faq.q4">I found an error in a question. How can I report it?</div>
+                <div class="faq-a" data-i18n="faq.a4">Please send an email to dddogwang@gmail.com with the subject, year, and question number. We appreciate your help in improving the App.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-q">Is EJUOne Pro a subscription?</div>
-                <div class="faq-a">No. EJUOne Pro is a one-time purchase that grants permanent access — no recurring charges.</div>
+                <div class="faq-q" data-i18n="faq.q5">Is EJUOne Pro a subscription?</div>
+                <div class="faq-a" data-i18n="faq.a5">No. EJUOne Pro is a one-time purchase that grants permanent access — no recurring charges.</div>
             </div>
         </div>
     </main>
 
     <footer>© 2025 dddogwang</footer>
+
+    <script>
+    window.I18N = {
+        en: {
+            "__title__": "Support — EJU One",
+            "nav.back": "← Back",
+            "title": "Support",
+            "subtitle": "We're here to help you with any questions or issues.",
+            "contact.title": "Get in Touch",
+            "contact.desc": "We typically respond within 24 hours.",
+            "faq.title": "Frequently Asked Questions",
+            "faq.q1": "How do I restore my EJUOne Pro purchase on a new device?",
+            "faq.a1": "Go to Settings → EJUOne Pro → Restore Purchases. Make sure you are signed in with the same Apple ID used for the original purchase.",
+            "faq.q2": "How do I sync my study data across devices?",
+            "faq.a2": "EJUOne Pro users can sign in with the same account on multiple devices. Your study data will automatically sync via the cloud.",
+            "faq.q3": "How do I delete my account?",
+            "faq.a3": "Go to Settings → Account → Delete Account. Please note that this action is irreversible and all your cloud data will be permanently deleted.",
+            "faq.q4": "I found an error in a question. How can I report it?",
+            "faq.a4": "Please send an email to dddogwang@gmail.com with the subject, year, and question number. We appreciate your help in improving the App.",
+            "faq.q5": "Is EJUOne Pro a subscription?",
+            "faq.a5": "No. EJUOne Pro is a one-time purchase that grants permanent access — no recurring charges."
+        },
+        zh: {
+            "__title__": "技术支持 — EJU One",
+            "nav.back": "← 返回",
+            "title": "技术支持",
+            "subtitle": "我们随时为您解答任何问题。",
+            "contact.title": "联系我们",
+            "contact.desc": "我们通常在 24 小时内回复。",
+            "faq.title": "常见问题",
+            "faq.q1": "如何在新设备上恢复 EJUOne Pro 的购买？",
+            "faq.a1": "进入 设置 → EJUOne Pro → 恢复购买。请确保您登录的是当初购买时使用的同一个 Apple ID。",
+            "faq.q2": "如何在多设备间同步学习数据？",
+            "faq.a2": "EJUOne Pro 用户可以在多台设备上使用同一账号登录，学习数据将自动通过云端同步。",
+            "faq.q3": "如何删除我的账号？",
+            "faq.a3": "进入 设置 → 账号 → 删除账号。请注意此操作不可撤销，您的所有云端数据将被永久删除。",
+            "faq.q4": "我发现题目有错误，如何反馈？",
+            "faq.a4": "请发送邮件至 dddogwang@gmail.com，注明科目、年份和题号。感谢您帮助我们改进应用。",
+            "faq.q5": "EJUOne Pro 是订阅制吗？",
+            "faq.a5": "不是。EJUOne Pro 是一次性买断，购买后永久有效，没有任何重复扣费。"
+        },
+        ja: {
+            "__title__": "サポート — EJU One",
+            "nav.back": "← 戻る",
+            "title": "サポート",
+            "subtitle": "ご質問や問題がございましたら、お気軽にお問い合わせください。",
+            "contact.title": "お問い合わせ",
+            "contact.desc": "通常24時間以内に返信いたします。",
+            "faq.title": "よくある質問",
+            "faq.q1": "新しいデバイスでEJUOne Proの購入を復元するには？",
+            "faq.a1": "設定 → EJUOne Pro → 購入を復元 へ進んでください。元の購入時に使用したApple IDと同じものでサインインしていることを確認してください。",
+            "faq.q2": "デバイス間で学習データを同期するには？",
+            "faq.a2": "EJUOne Proユーザーは、複数のデバイスで同じアカウントでサインインできます。学習データはクラウド経由で自動的に同期されます。",
+            "faq.q3": "アカウントを削除するには？",
+            "faq.a3": "設定 → アカウント → アカウント削除 へ進んでください。この操作は元に戻すことができず、すべてのクラウドデータが完全に削除されます。",
+            "faq.q4": "問題に誤りを見つけました。どのように報告すればよいですか？",
+            "faq.a4": "科目、年度、問題番号を記載してdddogwang@gmail.comまでメールをお送りください。アプリの改善にご協力いただき、ありがとうございます。",
+            "faq.q5": "EJUOne Proはサブスクリプションですか？",
+            "faq.a5": "いいえ。EJUOne Proは一度限りの購入で、永久的なアクセスを付与します。継続的な課金はありません。"
+        }
+    };
+    </script>
+    <script src="i18n.js"></script>
 </body>
 </html>
