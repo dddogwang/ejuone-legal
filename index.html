@@ -326,6 +326,70 @@
             color: var(--text-secondary);
         }
 
+        /* News / What's New */
+        .news {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+        }
+        .news-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 720px;
+            margin: 48px auto 0;
+        }
+        .news-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .news-date::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        .news-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .news-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text);
+        }
+        .news-tag {
+            flex-shrink: 0;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .news-tag.new {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .news-tag.fix {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
         /* Footer */
         footer {
             background: var(--text);
@@ -400,6 +464,7 @@
                 <div class="nav-links">
                     <a href="#features" data-i18n="nav.features">Features</a>
                     <a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a>
+                    <a href="#news" data-i18n="nav.news">News</a>
                     <a href="support.html" data-i18n="nav.support">Support</a>
                     <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
                 </div>
@@ -518,6 +583,32 @@
         </div>
     </section>
 
+    <section class="news" id="news">
+        <h2 class="section-title" data-i18n="news.title">What's New</h2>
+        <p class="section-subtitle" data-i18n="news.subtitle">Latest updates and improvements.</p>
+        <div class="news-card">
+            <div class="news-date">2026-04-13</div>
+            <ul class="news-list">
+                <li class="news-item">
+                    <span class="news-tag new" data-i18n="news.tagNew">New</span>
+                    <span data-i18n="news.item1">Sprint Plan — a personalized daily study planner to keep you on track.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-tag new" data-i18n="news.tagNew">New</span>
+                    <span data-i18n="news.item2">Wrong Answer Review — mistakes from practice mode are now auto-collected for targeted review.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-tag new" data-i18n="news.tagNew">New</span>
+                    <span data-i18n="news.item3">Word Card Review — a dedicated review mode to reinforce vocabulary retention.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-tag fix" data-i18n="news.tagFix">Fix</span>
+                    <span data-i18n="news.item4">Fixed audio player issues for a smoother listening practice experience.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
@@ -542,6 +633,7 @@
             "__title__": "EJU One — Your EJU Study Companion",
             "nav.features": "Features",
             "nav.screenshots": "Screenshots",
+            "nav.news": "News",
             "nav.support": "Support",
             "nav.privacy": "Privacy",
             "hero.tagline": "Your all-in-one study companion for the Examination for Japanese University Admission.",
@@ -581,6 +673,14 @@
             "subjects.chemistry": "Chemistry",
             "subjects.biology": "Biology",
             "subjects.science": "Natural science",
+            "news.title": "What's New",
+            "news.subtitle": "Latest updates and improvements.",
+            "news.tagNew": "New",
+            "news.tagFix": "Fix",
+            "news.item1": "Sprint Plan — a personalized daily study planner to keep you on track.",
+            "news.item2": "Wrong Answer Review — mistakes from practice mode are now auto-collected for targeted review.",
+            "news.item3": "Word Card Review — a dedicated review mode to reinforce vocabulary retention.",
+            "news.item4": "Fixed audio player issues for a smoother listening practice experience.",
             "footer.privacy": "Privacy Policy",
             "footer.terms": "Terms of Use",
             "footer.support": "Support",
@@ -591,6 +691,7 @@
             "__title__": "EJU One — 你的留考备考伙伴",
             "nav.features": "功能",
             "nav.screenshots": "截图",
+            "nav.news": "动态",
             "nav.support": "支持",
             "nav.privacy": "隐私",
             "hero.tagline": "专为日本留学试验考生打造的全能备考伙伴。",
@@ -630,6 +731,14 @@
             "subjects.chemistry": "化学",
             "subjects.biology": "生物",
             "subjects.science": "理科",
+            "news.title": "最新动态",
+            "news.subtitle": "近期更新与改进。",
+            "news.tagNew": "新功能",
+            "news.tagFix": "修复",
+            "news.item1": "学习计划 — 个性化每日学习任务规划，帮助你高效备考。",
+            "news.item2": "错题复习 — 练习模式中的错题现已自动收录，支持针对性复习。",
+            "news.item3": "单词本复习 — 全新的单词复习模式，巩固词汇记忆。",
+            "news.item4": "修复了音频播放器相关问题，听力练习体验更流畅。",
             "footer.privacy": "隐私政策",
             "footer.terms": "使用条款",
             "footer.support": "技术支持",
@@ -640,6 +749,7 @@
             "__title__": "EJU One — EJU受験のための学習パートナー",
             "nav.features": "機能",
             "nav.screenshots": "スクリーンショット",
+            "nav.news": "最新情報",
             "nav.support": "サポート",
             "nav.privacy": "プライバシー",
             "hero.tagline": "日本留学試験（EJU）受験生のためのオールインワン学習パートナー。",
@@ -679,6 +789,14 @@
             "subjects.chemistry": "化学",
             "subjects.biology": "生物",
             "subjects.science": "理科",
+            "news.title": "最新情報",
+            "news.subtitle": "最近のアップデートと改善。",
+            "news.tagNew": "新機能",
+            "news.tagFix": "修正",
+            "news.item1": "学習プラン — 毎日の学習タスクをパーソナライズして、効率的に受験準備。",
+            "news.item2": "間違い復習 — 練習モードでの間違いが自動で記録され、集中的に復習できます。",
+            "news.item3": "単語カード復習 — 語彙の定着を強化する専用の復習モード。",
+            "news.item4": "オーディオプレーヤーの不具合を修正し、リスニング練習がよりスムーズに。",
             "footer.privacy": "プライバシーポリシー",
             "footer.terms": "利用規約",
             "footer.support": "サポート",
