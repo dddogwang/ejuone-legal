@@ -193,6 +193,31 @@
             border-radius: 50%;
             background: var(--primary);
         }
+        .hero-cta {
+            margin: 32px 0 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 22px;
+            background: var(--text);
+            color: white;
+            text-decoration: none;
+            border-radius: 14px;
+            transition: all 0.2s;
+            box-shadow: 0 6px 20px rgba(61, 57, 41, 0.18);
+        }
+        .app-store-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(61, 57, 41, 0.25);
+        }
+        .app-store-btn svg { width: 28px; height: 28px; fill: white; }
+        .app-store-btn .as-text { display: flex; flex-direction: column; text-align: left; line-height: 1.1; }
+        .app-store-btn .as-small { font-size: 11px; opacity: 0.85; }
+        .app-store-btn .as-large { font-size: 18px; font-weight: 600; }
 
         /* Features section */
         .features {
@@ -478,6 +503,15 @@
         <img src="icon.png" alt="EJU One" class="app-icon">
         <h1>EJU One</h1>
         <p class="tagline" data-i18n="hero.tagline">Your all-in-one study companion for the Examination for Japanese University Admission.</p>
+        <div class="hero-cta">
+            <a href="https://apps.apple.com/us/app/eju-one/id6761975488" class="app-store-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <span class="as-text">
+                    <span class="as-small" data-i18n="hero.appstore.small">Download on the</span>
+                    <span class="as-large" data-i18n="hero.appstore.large">App Store</span>
+                </span>
+            </a>
+        </div>
         <div class="badges">
             <span class="badge"><span class="dot"></span><span data-i18n="hero.badge1">All EJU subjects</span></span>
             <span class="badge"><span class="dot"></span><span data-i18n="hero.badge2">Mock & practice mode</span></span>
@@ -642,6 +676,8 @@
             "nav.support": "Support",
             "nav.privacy": "Privacy",
             "hero.tagline": "Your all-in-one study companion for the Examination for Japanese University Admission.",
+            "hero.appstore.small": "Download on the",
+            "hero.appstore.large": "App Store",
             "hero.badge1": "All EJU subjects",
             "hero.badge2": "Mock & practice mode",
             "hero.badge3": "Cross-device sync",
@@ -702,6 +738,8 @@
             "nav.support": "支持",
             "nav.privacy": "隐私",
             "hero.tagline": "专为日本留学试验考生打造的全能备考伙伴。",
+            "hero.appstore.small": "立即下载",
+            "hero.appstore.large": "App Store",
             "hero.badge1": "全科覆盖",
             "hero.badge2": "模拟与专项练习",
             "hero.badge3": "跨设备同步",
@@ -762,6 +800,8 @@
             "nav.support": "サポート",
             "nav.privacy": "プライバシー",
             "hero.tagline": "日本留学試験（EJU）受験生のためのオールインワン学習パートナー。",
+            "hero.appstore.small": "ダウンロード",
+            "hero.appstore.large": "App Store",
             "hero.badge1": "全科目対応",
             "hero.badge2": "模擬試験＆練習モード",
             "hero.badge3": "デバイス間同期",
